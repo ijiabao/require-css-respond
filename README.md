@@ -5,11 +5,14 @@
 * require-css 源项目在 https://github.com/guybedford/require-css
 
 ## css.min.js
-* 因respond.js只认link标签，所以修改CSS加载方式仅为动态创建link标签， 且在加载成功后刷新respond.js|respond.proxy.js
-## respond.proxy.js
-* 为respond对象添加接口，updateProxy(link), 使CSS加载成功后执行更新。
+* require-css 使用此文件，兼容IE respond.js
+* 因respond.js只认link标签，所以修改CSS加载方式仅为动态创建link标签， 且在加载成功后刷新`respond.js 或 respond.proxy.js`
 
-## 如果项目不加载CDN中的CSS样式，则使用原始respond.js即可
+## respond.proxy.js
+* 需要处理CDN样式文件时, 为respond对象添加接口: `updateProxy(link)`
+* 实例中使用 respond.min.js respond.proxy.js 二选一，前者不使用CDN文件，后者使用CDN
+
+## 如果项目不加载CDN中的CSS文件，则使用原始respond.js即可
 ```
 <head>
   <!-- 非动态加载的css样式 -->
