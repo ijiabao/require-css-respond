@@ -9,17 +9,20 @@
 /*! Respond.js: min/max-width media query polyfill. Remote proxy (c) Scott Jehl. MIT/GPLv2 Lic. j.mp/respondjs  */
 (function(win, doc, undefined){
 	var docElem			= doc.documentElement,
-		//proxyURL		= doc.getElementById("respond-proxy").href,
-		//redirectURL		= (doc.getElementById("respond-redirect") || location).href,
+		proxyURL		= win.RESPOND_PROXY_URL || doc.getElementById("respond-proxy").href,
+		redirectURL,//		= (doc.getElementById("respond-redirect") || location).href,
 		baseElem		= doc.getElementsByTagName("base")[0],
 		urls			= [],
 		refNode;
 
 	// by ijiabao, auto get local path
-	var selfJs = doc.getElementById('respond-js').href,
-		path = selfJs.replace(/^(.*\/)?(.+)$/, '$1'),
-		redirectURL = path + 'respond.proxy.gif',
-		proxyURL = win.RESPOND_PROXY_URL || doc.getElementById("respond-proxy").href;
+	var selfJs = doc.getElementById('respond-js');
+	if(selfJs){
+		var path = selfJs.src.replace(/^(.*\/)?(.+)$/, '$1');
+		redirectURL = path + 'respond.proxy.gif';
+	} else{
+		redirectURL = (doc.getElementById("respond-redirect") || location).href;
+	};
 
 	function encode(url){
 		return win.encodeURIComponent(url);
