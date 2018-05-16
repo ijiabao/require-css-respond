@@ -56,15 +56,15 @@
 // require-config.js
 
 // for respond.proxy
-window.RESPOND_PROXY_URL = 'your-cdn/respond/respond.proxy.html';
+window.RESPOND_PROXY_URL = 'your-cdn/respond/respond.proxy.html'; // 远程
 
 requirejs.config({
   map:{
     "*": {"css":"cdn/or/site/css.min"}
   },
   paths:{
-    'respond':'respond/respond.min',  // your cdn or local site, respond.min.js
-    'respond.proxy':'respond/respond.proxy',  // respond.proxy.js
+    'respond':'respond/respond.min',  // your cdn or local site, respond.min.js 本地或远程
+    'respond.proxy':'respond/respond.proxy',  // respond.proxy.js 本地
   },
   shim:{
     // css 依赖于respond, 仅在IE<9时加载， 参见：https://github.com/ijiabao/require-ltie9
